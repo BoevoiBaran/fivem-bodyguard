@@ -1,0 +1,9 @@
+{
+  "guard_types":
+  {
+    "default_guard":{
+      "combat_behaviour": 2,
+      "ammo_count": 500
+    }
+  }
+}

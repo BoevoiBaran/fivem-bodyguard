@@ -6,10 +6,12 @@ namespace Client
     public class BodyguardsManager
     {
         private bool _started;
+        private readonly BodyguardConfig _config;
         private readonly List<Bodyguard> _bodyguards = new List<Bodyguard>();
         
-        public BodyguardsManager()
+        public BodyguardsManager(BodyguardConfig config)
         {
+            _config = config;
             _started = false;
         }
 

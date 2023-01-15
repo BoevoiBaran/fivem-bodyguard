@@ -15,7 +15,7 @@ namespace Client
             Debug.WriteLine("[Bodyguard] Dll loaded");
             
             API.RegisterCommand("spawn_bodyguard", new Action(SpawnBodyguardCommand), false);
-            _manager = new BodyguardsManager();
+            _manager = new BodyguardsManager(ConfigLoader.GetConfig());
             
             Debug.WriteLine("[Bodyguard] Dll command register");
             
