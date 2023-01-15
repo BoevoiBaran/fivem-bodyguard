@@ -48,7 +48,7 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Shared\Ext\Vector3Extensions.cs" />
-        <Compile Include="Shared\Helpers\ConfigLoader.cs" />
+        <Compile Include="Shared\Helpers\JsonDataProvider.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

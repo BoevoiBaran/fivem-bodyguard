@@ -10,6 +10,8 @@ namespace Shared.Shared.Helpers
             var result = new Dictionary<string, Dictionary<string, object>>();
             if (!System.IO.Directory.Exists(dataPath))
             {
+                Debug.WriteLine($"Data folder: {dataPath} not found!");
+                
                 return result;
             }
 
