@@ -2,6 +2,7 @@
 Bodyguard script for gta5 fiveM
 
 version 1:
+
 SpawnState
     1) Появляются за пределами видимости игрока
     2) Двигаются к игроку пешком
