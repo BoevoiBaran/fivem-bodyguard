@@ -8,9 +8,6 @@ namespace Client
 {
     public class Bodyguard
     {
-        private const int DefaultCombatBehaviour = 2;
-        private const int DefaultAmmoCount = 500;
-        
         public readonly Ped BodyguardPed;
         public readonly Ped OwnerPed;
         
@@ -27,18 +24,9 @@ namespace Client
         private void Initialize(Ped bodyguardPed, Ped ownerPed)
         {
             Debug.WriteLine("[Bodyguard] Start initialize");
-            
-            API.SetPedCombatAbility(bodyguardPed.Handle, DefaultCombatBehaviour);
-            Debug.WriteLine("[Bodyguard] SetPedCombatAbility");
-            
-            API.GiveWeaponToPed(bodyguardPed.Handle, (uint)WeaponHash.AssaultRifleMk2, DefaultAmmoCount, false, true);
-            Debug.WriteLine("[Bodyguard] GiveWeaponToPed");
-            
-            bodyguardPed.PlayAmbientSpeech("GENERIC_HI");
-            Debug.WriteLine("[Bodyguard] PlayAmbientSpeech");
 
             var context = new StateContext(_botStates, bodyguardPed, ownerPed);
-            _botStates.Push(new FollowState(context));
+            _botStates.Push(new SpawnState(context));
         }
         
         public void Update()

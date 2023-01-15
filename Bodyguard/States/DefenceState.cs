@@ -3,11 +3,11 @@
 // ReSharper disable once CheckNamespace
 namespace Client.States
 {
-    public class ProtectionState :IState
+    public class DefenceState :IState
     {
         private readonly StateContext _context;
         
-        public ProtectionState(StateContext context)
+        public DefenceState(StateContext context)
         {
             Debug.WriteLine("[ProtectionState] Start");
             

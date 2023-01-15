@@ -1,6 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Client.Ext;
+using Shared;
 
 // ReSharper disable once CheckNamespace
 namespace Client.States
@@ -33,7 +33,7 @@ namespace Client.States
             {
                 var states = _context.BotStates;
                 states.Pop();
-                states.Push(new ProtectionState(_context));
+                states.Push(new DefenceState(_context));
             }
         }
     }

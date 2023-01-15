@@ -2,7 +2,7 @@
 using CitizenFX.Core;
 
 // ReSharper disable once CheckNamespace
-namespace Client.Ext
+namespace Shared
 {
     public static class Vector3Extensions
     {
@@ -14,5 +14,6 @@ namespace Client.Ext
 
             return (float) Math.Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
         }
-    }
+    }    
 }
+
