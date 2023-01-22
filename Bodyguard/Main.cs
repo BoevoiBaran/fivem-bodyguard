@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Client.Ext;
 
 // ReSharper disable once CheckNamespace
 namespace Client
@@ -59,7 +61,8 @@ namespace Client
                 await Delay(100);
             }
             
-            var bodyguardPed = await World.CreatePed(bodyGuardHash, owner.Position + owner.ForwardVector * 2);
+            var spawnPoint = owner.Position + owner.ForwardVector * 2;
+            var bodyguardPed = await World.CreatePed(bodyGuardHash, spawnPoint);
             var bodyGuard = new Bodyguard(bodyguardPed, owner);
             _manager.AddBodyguard(bodyGuard);
 

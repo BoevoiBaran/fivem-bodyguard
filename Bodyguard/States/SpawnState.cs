@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Client.Ext;
 
 // ReSharper disable once CheckNamespace
 namespace Client.States
@@ -10,7 +11,7 @@ namespace Client.States
         private const int DefaultAmmoCount = 500;
         
         private readonly StateContext _context;
-        
+
         public SpawnState(StateContext context)
         {
             Debug.WriteLine("[SpawnState] Start");
@@ -28,10 +29,24 @@ namespace Client.States
             //вычисляем позицию гварда
             //закрепляем за гвардом позицию
             //отправляем в FollowState
+            
+            
+            var player = _context.OwnerPed;
+            var playerPos = player.Position;
+            var guardPos = _context.BodyguardPed.Position;
+            var distanceToPlayer = guardPos.DistanceTo(playerPos);
+            var speed = 10;
 
-            var states = _context.BotStates;
-            states.Pop();
-            states.Push(new FollowState(_context));
+            if (distanceToPlayer > 3)
+            {
+                API.TaskGoToEntity(_context.BodyguardPed.Handle, player.Handle, -1, 2.0f, speed, 1073741824, 0);    
+            }
+            else
+            {
+                var states = _context.BotStates;
+                states.Pop();
+                states.Push(new FollowState(_context));
+            }
         }
     }
 }

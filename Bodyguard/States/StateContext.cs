@@ -9,6 +9,9 @@ namespace Client.States
         public readonly Ped BodyguardPed;
         public readonly Ped OwnerPed;
         public readonly Stack<IState> BotStates;
+        
+        public int BodyguardCurrentIndex;
+        public int BodyguardsCount;
 
         public StateContext(Stack<IState> botStates, Ped bodyguardPed, Ped ownerPed)
         {
