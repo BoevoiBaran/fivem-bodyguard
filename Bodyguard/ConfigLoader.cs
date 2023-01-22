@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using CitizenFX.Core;
-using Client.Helpers;
+using CitizenFX.Core.Native;
+using Newtonsoft.Json;
 
 // ReSharper disable once CheckNamespace
 namespace Client
@@ -10,30 +10,26 @@ namespace Client
     {
         public static BodyguardConfig GetConfig()
         {
-            Debug.WriteLine($"[ConfigLoader] Try getCurrent directory");
+            var resourceName = API.GetCurrentResourceName();
+            Debug.WriteLine($"[ConfigLoader] {resourceName}");
             
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var path = $"{currentDirectory}\\Cfg";
+            var json = API.LoadResourceFile(resourceName, "config.json");
+            Debug.WriteLine($"[ConfigLoader] {json}");
             
-            Debug.WriteLine($"[ConfigLoader] cfg path:{path}");
-            
-            var cfgData = DataProvider.GetData(path);
-            var config = new BodyguardConfig(cfgData);
+            var config = JsonConvert.DeserializeObject<BodyguardConfig>(json);
+            Debug.WriteLine($"[ConfigLoader] Beh:{config.CombatBehaviour} Ammo:{config.AmmoCount}");
+
             return config;
         }
     }
 
+    [JsonObject]
     public class BodyguardConfig
     {
-        private BodyguardConfig()
-        {
-            
-        }
+        [JsonProperty("combat_behaviour")] public int CombatBehaviour { get; protected set; } = 2;
+        [JsonProperty("ammo_count")] public int AmmoCount { get; protected set; } = 100;
         
-        public BodyguardConfig(Dictionary<string, Dictionary<string, object>> cfgData)
-        {
-            
-        }
+        private BodyguardConfig() { }
 
         public static BodyguardConfig GetDefaultCfg()
         {
