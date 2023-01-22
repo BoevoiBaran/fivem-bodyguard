@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using Shared;
 
 // ReSharper disable once CheckNamespace
 namespace Client.States

@@ -2,7 +2,7 @@
 using CitizenFX.Core;
 
 // ReSharper disable once CheckNamespace
-namespace Shared
+namespace Client.Ext
 {
     public static class Vector3Extensions
     {

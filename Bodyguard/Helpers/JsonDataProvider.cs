@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using CitizenFX.Core;
 
-namespace Shared.Shared.Helpers
+// ReSharper disable once CheckNamespace
+namespace Client.Helpers
 {
     public static class DataProvider
     {
         public static Dictionary<string, Dictionary<string, object>> GetData(string dataPath)
         {
+            Debug.WriteLine($"Start get data:{dataPath}");
+            
             var result = new Dictionary<string, Dictionary<string, object>>();
             if (!System.IO.Directory.Exists(dataPath))
             {
