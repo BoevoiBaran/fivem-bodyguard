@@ -42,9 +42,9 @@
           <HintPath>..\packages\LemonUI.FiveM.1.9.1\lib\net452\LemonUI.FiveM.net.dll</HintPath>
           <Private>True</Private>
         </Reference>
-        <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-          <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-          <Private>True</Private>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" ExcludeAssets="Compile"/>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(PkgNewtonsoft_Json)\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
