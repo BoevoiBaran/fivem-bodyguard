@@ -35,11 +35,15 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="CitizenFX.Core.Client, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\packages\CitizenFX.Core.Client.1.0.6228\lib\net45\CitizenFX.Core.Client.dll</HintPath>
+          <HintPath>..\packages\CitizenFX.Core.Client.1.0.4355\lib\net45\CitizenFX.Core.Client.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="fastJSON, Version=2.4.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd">
           <HintPath>..\packages\fastJSON.2.4.0.4\lib\net40\fastJSON.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="LemonUI.FiveM.net, Version=1.9.1.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\LemonUI.FiveM.1.9.1\lib\net452\LemonUI.FiveM.net.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="System" />
@@ -62,6 +66,7 @@
         <Compile Include="States\DefenceState.cs" />
         <Compile Include="States\SpawnState.cs" />
         <Compile Include="States\StateContext.cs" />
+        <Compile Include="Ui.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
