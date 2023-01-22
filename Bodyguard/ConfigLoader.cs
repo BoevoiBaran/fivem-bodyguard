@@ -29,7 +29,7 @@ namespace Client
         [JsonProperty("combat_behaviour")] public int CombatBehaviour { get; protected set; } = 2;
         [JsonProperty("ammo_count")] public int AmmoCount { get; protected set; } = 100;
         
-        private BodyguardConfig() { }
+        public BodyguardConfig() { }
 
         public static BodyguardConfig GetDefaultCfg()
         {
