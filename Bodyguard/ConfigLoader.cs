@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using CitizenFX.Core;
-using CitizenFX.Core.Native;
+﻿using CitizenFX.Core.Native;
 using Newtonsoft.Json;
 
 // ReSharper disable once CheckNamespace
@@ -11,13 +9,8 @@ namespace Client
         public static BodyguardConfig GetConfig()
         {
             var resourceName = API.GetCurrentResourceName();
-            Debug.WriteLine($"[ConfigLoader] {resourceName}");
-            
             var json = API.LoadResourceFile(resourceName, "config.json");
-            Debug.WriteLine($"[ConfigLoader] {json}");
-            
             var config = JsonConvert.DeserializeObject<BodyguardConfig>(json);
-            Debug.WriteLine($"[ConfigLoader] Beh:{config.CombatBehaviour} Ammo:{config.AmmoCount}");
 
             return config;
         }

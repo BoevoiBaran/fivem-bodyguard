@@ -42,7 +42,7 @@
           <HintPath>..\packages\LemonUI.FiveM.1.9.1\lib\net452\LemonUI.FiveM.net.dll</HintPath>
           <Private>True</Private>
         </Reference>
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" ExcludeAssets="Compile" GeneratePathProperty="true"/>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" ExcludeAssets="Compile" GeneratePathProperty="true" />
         <Reference Include="Newtonsoft.Json">
             <HintPath>$(PkgNewtonsoft_Json)\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
         </Reference>
@@ -56,6 +56,7 @@
         <Compile Include="Commands\OwnerCommands.cs" />
         <Compile Include="ConfigLoader.cs" />
         <Compile Include="Ext\Vector3Extensions.cs" />
+        <Compile Include="Helpers\ModelLoader.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="Bodyguard.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

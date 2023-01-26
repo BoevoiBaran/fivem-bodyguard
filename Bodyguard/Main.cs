@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 
@@ -15,20 +14,28 @@ namespace Client
             Debug.WriteLine("[Bodyguard] Dll loaded");
             
             API.RegisterCommand("spawn_bodyguard", new Action(SpawnBodyguardCommand), false);
-
-            try
-            {
-                var loadedConfig = ConfigLoader.GetConfig();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine($"[Bodyguard] ConfigLoader exception:{e}");    
-            }
             
-            _manager = new BodyguardsManager(BodyguardConfig.GetDefaultCfg());
+            _manager = new BodyguardsManager(GetConfig());
+            
             Debug.WriteLine("[Bodyguard] Dll command register");
             
             Update();
+        }
+
+        private static BodyguardConfig GetConfig()
+        {
+            var config = BodyguardConfig.GetDefaultCfg();
+            
+            try
+            {
+                config = ConfigLoader.GetConfig();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"[Bodyguard] ConfigLoader exception:{e}. Use default config");
+            }
+
+            return config;
         }
         
         private async void Update()
@@ -46,34 +53,12 @@ namespace Client
         {
             try
             {
-                await SpawnBodyguard();
+                await _manager.SpawnBodyguard();
             }
             catch (Exception e)
             {
                 Debug.WriteLine($"[Bodyguard] Exception:{e}");    
             }
-        }
-
-        private async Task SpawnBodyguard()
-        {
-            Debug.WriteLine("[Bodyguard] Try spawn bodyguard");
-            
-            var owner = Game.Player.Character;
-            var bodyGuardHash = PedHash.ChemSec01SMM;
-            var bodyGuardHashUint = (uint) bodyGuardHash; 
-            
-            API.RequestModel(bodyGuardHashUint);
-            while (!API.HasModelLoaded(bodyGuardHashUint))
-            {
-                await Delay(100);
-            }
-            
-            var spawnPoint = owner.Position + owner.ForwardVector * 2;
-            var bodyguardPed = await World.CreatePed(bodyGuardHash, spawnPoint);
-            var bodyGuard = new Bodyguard(bodyguardPed, owner);
-            _manager.AddBodyguard(bodyGuard);
-
-            Debug.WriteLine("[Bodyguard] Bodyguard spawn finished");
         }
     }
 } 
