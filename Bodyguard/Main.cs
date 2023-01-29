@@ -8,12 +8,13 @@ namespace Client
     public class Main : BaseScript
     {
         private readonly BodyguardsManager _manager;
-        
+
         public Main()
         {
             Debug.WriteLine("[Bodyguard] Dll loaded");
             
             API.RegisterCommand("spawn_bodyguard", new Action(SpawnBodyguardCommand), false);
+            API.RegisterCommand("spawn_bodyguards_team", new Action(SpawnBodyguardsTeamCommand), false);
             
             _manager = new BodyguardsManager(GetConfig());
             
@@ -54,6 +55,18 @@ namespace Client
             try
             {
                 await _manager.SpawnBodyguard();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"[Bodyguard] Exception:{e}");    
+            }
+        }
+        
+        private async void SpawnBodyguardsTeamCommand()
+        {
+            try
+            {
+                await _manager.SpawnBodyguardTeam();
             }
             catch (Exception e)
             {

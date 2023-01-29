@@ -53,6 +53,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="BodyguardsManager.cs" />
+        <Compile Include="BodyGuardsTeam.cs" />
         <Compile Include="Commands\OwnerCommands.cs" />
         <Compile Include="ConfigLoader.cs" />
         <Compile Include="Ext\Vector3Extensions.cs" />
@@ -62,6 +63,7 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="States\AttackState.cs" />
         <Compile Include="States\FollowState.cs" />
+        <Compile Include="States\InVehicleState.cs" />
         <Compile Include="States\IState.cs" />
         <Compile Include="States\DefenceState.cs" />
         <Compile Include="States\SpawnState.cs" />

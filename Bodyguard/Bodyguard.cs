@@ -7,19 +7,20 @@ namespace Client
 {
     public class Bodyguard
     {
+        public Ped GuardPed => _context.BodyguardPed;
+        
+        private readonly StateContext _context;
         private readonly Stack<IState> _botStates = new Stack<IState>();
         
-        public Bodyguard(Ped bodyguardPed, Ped owner)
+        public Bodyguard(StateContext context)
         {
-            Initialize(bodyguardPed, owner);
+            _context = context;
+            _context.SetupStates(_botStates);
         }
 
-        private void Initialize(Ped bodyguardPed, Ped ownerPed)
+        public void PushInitState(IState state)
         {
-            Debug.WriteLine("[Bodyguard] Start initialize");
-
-            var context = new StateContext(_botStates, bodyguardPed, ownerPed);
-            _botStates.Push(new SpawnState(context));
+            _botStates.Push(state);
         }
         
         public void Update()

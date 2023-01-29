@@ -8,16 +8,20 @@ namespace Client.States
     {
         public readonly Ped BodyguardPed;
         public readonly Ped OwnerPed;
-        public readonly Stack<IState> BotStates;
+        public Stack<IState> BotStates;
         
         public int BodyguardCurrentIndex;
         public int BodyguardsCount;
 
-        public StateContext(Stack<IState> botStates, Ped bodyguardPed, Ped ownerPed)
+        public StateContext(Ped bodyguardPed, Ped ownerPed)
         {
-            BotStates = botStates;
             BodyguardPed = bodyguardPed;
             OwnerPed = ownerPed;
+        }
+
+        public void SetupStates(Stack<IState> botStates)
+        {
+            BotStates = botStates;
         }
     }
 }
