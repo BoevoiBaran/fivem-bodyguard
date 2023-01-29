@@ -66,7 +66,6 @@
         <Compile Include="States\InVehicleState.cs" />
         <Compile Include="States\IState.cs" />
         <Compile Include="States\DefenceState.cs" />
-        <Compile Include="States\SpawnState.cs" />
         <Compile Include="States\StateContext.cs" />
         <Compile Include="Ui.cs" />
     </ItemGroup>

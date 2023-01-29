@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Client.States;
 
 
 // ReSharper disable once CheckNamespace
@@ -74,6 +76,18 @@ namespace Client
             var targetHeading = 0.0f;
             API.GetClosestVehicleNodeWithHeading(ownerPosition.X, ownerPosition.Y, ownerPosition.Z, ref targetLocation, ref targetHeading, 1, 3.0F, 0);
             Driver.Task.DriveTo(_vehicle, targetLocation, 10F, 20F, 262972);
+
+            foreach (var guardPed in _bodyguards)
+            {
+                var initState = new InVehicleState(
+                    guardPed.Context, 
+                    _vehicle, 
+                    targetLocation, 
+                    targetHeading,
+                    _vehicle.Driver.Handle == guardPed.GuardPed.Handle);
+                
+                guardPed.PushInitState(initState);
+            }
         }
 
         private void SetupInfantryTeam(Vector3 ownerPosition)

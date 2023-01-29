@@ -11,8 +11,6 @@ namespace Client.States
         
         public DefenceState(StateContext context)
         {
-            Debug.WriteLine("[ProtectionState] Start");
-            
             _context = context;
         }
 

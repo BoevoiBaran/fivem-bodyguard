@@ -79,8 +79,9 @@ namespace Client
             {
                 var guard = await CreateBodyguard(player, bodyGuardHash, teamSpawnPosition);
                 if (guard != null)
-                {
-                   guards.Add(guard); 
+                { 
+                    guard.Context.BodyguardCurrentIndex = i; 
+                    guards.Add(guard); 
                 }
             }
 
@@ -99,7 +100,7 @@ namespace Client
                 player.Position.X, 
                 player.Position.Y, 
                 player.Position.Z, 
-                80, 
+                100, 
                 ref spawnLocation, 
                 ref spawnHeading, 
                 ref unusedVar, 

@@ -9,8 +9,6 @@ namespace Client.States
         
         public AttackState(StateContext context)
         {
-            Debug.WriteLine("[AttackState] Start");
-            
             _context = context;
         }
         

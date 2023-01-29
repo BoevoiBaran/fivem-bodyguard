@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using Client.States;
 
 // ReSharper disable once CheckNamespace
@@ -7,15 +8,21 @@ namespace Client
 {
     public class Bodyguard
     {
-        public Ped GuardPed => _context.BodyguardPed;
+        private const int DefaultCombatBehaviour = 2;
+        private const int DefaultAmmoCount = 500;
         
-        private readonly StateContext _context;
+        public Ped GuardPed => Context.BodyguardPed;
+        
+        public readonly StateContext Context;
         private readonly Stack<IState> _botStates = new Stack<IState>();
         
         public Bodyguard(StateContext context)
         {
-            _context = context;
-            _context.SetupStates(_botStates);
+            Context = context;
+            Context.SetupStates(_botStates);
+            
+            API.SetPedCombatAbility(context.BodyguardPed.Handle, DefaultCombatBehaviour);
+            API.GiveWeaponToPed(context.BodyguardPed.Handle, (uint)WeaponHash.AssaultRifleMk2, DefaultAmmoCount, false, true);
         }
 
         public void PushInitState(IState state)

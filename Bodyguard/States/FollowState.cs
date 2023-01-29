@@ -13,8 +13,6 @@ namespace Client.States
         
         public FollowState(StateContext context)
         {
-            Debug.WriteLine("[FollowState] Start");
-            
             _context = context;
         }
 
@@ -24,7 +22,7 @@ namespace Client.States
             var playerPos = player.Position;
             var guardPos = _context.BodyguardPed.Position;
             var distanceToPlayer = guardPos.DistanceTo(playerPos);
-            var speed = _context.OwnerPed.IsSprinting || _context.OwnerPed.IsRunning ? 10 : 1; 
+            var speed = _context.OwnerPed.IsSprinting || _context.OwnerPed.IsRunning || distanceToPlayer > 10 ? 10 : 1; 
 
             if (distanceToPlayer > 3)
             {
