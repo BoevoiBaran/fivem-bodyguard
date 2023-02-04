@@ -58,6 +58,7 @@
         <Compile Include="ConfigLoader.cs" />
         <Compile Include="Ext\Vector3Extensions.cs" />
         <Compile Include="Helpers\ModelLoader.cs" />
+        <Compile Include="EntityProvider.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="Bodyguard.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,13 +16,15 @@ namespace Client
         public readonly StateContext Context;
         private readonly Stack<IState> _botStates = new Stack<IState>();
         
-        public Bodyguard(StateContext context)
+        public Bodyguard(StateContext context, uint bodyguardGroupHash)
         {
             Context = context;
             Context.SetupStates(_botStates);
-            
-            API.SetPedCombatAbility(context.BodyguardPed.Handle, DefaultCombatBehaviour);
-            API.GiveWeaponToPed(context.BodyguardPed.Handle, (uint)WeaponHash.AssaultRifleMk2, DefaultAmmoCount, false, true);
+
+            var pedHash = context.BodyguardPed.Handle;
+            API.SetPedAsGroupMember(pedHash, (int) bodyguardGroupHash);
+            API.SetPedCombatAbility(pedHash, DefaultCombatBehaviour);
+            API.GiveWeaponToPed(pedHash, (uint)WeaponHash.AssaultRifleMk2, DefaultAmmoCount, false, true);
         }
 
         public void PushInitState(IState state)

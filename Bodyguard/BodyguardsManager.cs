@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
@@ -13,11 +14,29 @@ namespace Client
         private bool _started;
         private readonly BodyguardConfig _config;
         private readonly List<BodyGuardsTeam> _bodyguards = new List<BodyGuardsTeam>();
+
+        private static uint _bodyguardGroupHash; 
         
         public BodyguardsManager(BodyguardConfig config)
         {
             _config = config;
             _started = false;
+
+            CreateBodyguardsTeamRelationshipsGroup();
+        }
+
+        private void CreateBodyguardsTeamRelationshipsGroup()
+        {
+            var groupGeneratedName = Guid.NewGuid().ToString();
+
+            API.AddRelationshipGroup(groupGeneratedName, ref _bodyguardGroupHash);
+
+            const int relationshipsType = (int) Relationship.Companion;
+            var player = Game.Player.Character;
+            var playerGroupHash = (uint) player.RelationshipGroup.Hash;
+            
+            API.SetRelationshipBetweenGroups(relationshipsType, _bodyguardGroupHash, playerGroupHash);
+            API.SetRelationshipBetweenGroups(relationshipsType, playerGroupHash, _bodyguardGroupHash);
         }
 
         private void AddTeam(BodyGuardsTeam team)
@@ -130,7 +149,7 @@ namespace Client
             {
                 var bodyguardPed = await World.CreatePed(modelHash, spawnPoint);
                 var context = new StateContext(bodyguardPed, owner);
-                var bodyGuard = new Bodyguard(context);
+                var bodyGuard = new Bodyguard(context, _bodyguardGroupHash);
                 return bodyGuard;
             }
 
