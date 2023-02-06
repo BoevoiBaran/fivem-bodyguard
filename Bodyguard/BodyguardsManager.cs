@@ -74,8 +74,32 @@ namespace Client
                 AddTeam(team); 
             }
         }
-
+        
         public async Task SpawnBodyguardTeam()
+        {
+            var player = Game.Player.Character;
+
+            const int defaultTeamCount = 4;
+            
+            var guards = new List<Bodyguard>(defaultTeamCount);
+            var teamSpawnPosition = player.Position - (player.ForwardVector * 3f);
+            var bodyGuardHash = PedHash.ChemSec01SMM;
+            for (var i = 0; i < defaultTeamCount; i++)
+            {
+                var guard = await CreateBodyguard(player, bodyGuardHash, teamSpawnPosition);
+                if (guard != null)
+                { 
+                    guard.Context.BodyguardCurrentIndex = i; 
+                    guards.Add(guard); 
+                }
+            }
+
+            var team = new BodyGuardsTeam(guards);
+            team.Setup(player.Position);
+            AddTeam(team);
+        }
+
+        public async Task SpawnBodyguardTeamOnVehicle()
         {
             var player = Game.Player.Character;
             

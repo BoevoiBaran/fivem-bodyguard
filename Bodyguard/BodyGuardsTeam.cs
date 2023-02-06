@@ -54,7 +54,7 @@ namespace Client
             }
             else
             {
-                SetupInfantryTeam(ownerPosition);   
+                SetupInfantryTeam();   
             }
         }
 
@@ -90,9 +90,13 @@ namespace Client
             }
         }
 
-        private void SetupInfantryTeam(Vector3 ownerPosition)
+        private void SetupInfantryTeam()
         {
-            
+            foreach (var guardPed in _bodyguards)
+            {
+                var initState = new FollowState(guardPed.Context);
+                guardPed.PushInitState(initState);
+            }
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Client.States
 
         public void Update()
         {
+            
+            //TaskGuardAssignedDefensiveArea ???
             var player = _context.OwnerPed;
             var nearbyEnemies = new List<Ped>(); //<- GetTargets
             if (nearbyEnemies.Count > 0)
